@@ -169,7 +169,7 @@ function Profile() {
               className={
                 changeDetails
                   ? "bg-slate-200 px-6 py-4 m-2 lg:px-4 lg:py-2  w-96 border-blue bg-indigo-50 shadow mb-2 rounded-md"
-                  : "px-2 py-4 m-2 sm:px-6 lg:py-2 w-96 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow mb-2 rounded-md"
+                  : "appearance-none rounded-none relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 bg-indigo-50 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-4"
               }
               type="text"
               value={name}
@@ -183,7 +183,7 @@ function Profile() {
               <p className="ml-2 text-pink-600 text-sm">Edit full name.</p>
             )}
             <input
-              className="px-6 py-4 m-2 lg:px-4 lg:py-2 border-transparent bg-indigo-50 w-96 dark:bg-gray-200  shadow mb-2 rounded-md"
+              className="appearance-none rounded-none relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 bg-indigo-50 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-4"
               type="text"
               value={email}
               disabled
@@ -193,7 +193,7 @@ function Profile() {
               className={
                 changeDetails
                   ? "bg-slate-50 px-6 py-4 m-2 lg:px-4 lg:py-2  w-96 focus:border-sky-500 border-transparent bg-indigo-50 shadow  rounded-md"
-                  : "px-6 py-4 m-2 lg:px-4 lg:py-2  w-96 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow rounded-md"
+                  : "appearance-none rounded-none relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 bg-indigo-50 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-4"
               }
               type="text"
               id="number"
