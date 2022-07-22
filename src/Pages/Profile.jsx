@@ -57,7 +57,7 @@ function Profile() {
           mobileNumber: number,
         });
       } else if (name === userName && number === userNumber) {
-        toast.error("No update was made");
+        toast.error("No Changes was made");
         return;
       }
       const userRef = doc(db, "users", auth.currentUser.uid);
