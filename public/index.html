@@ -37,4 +37,17 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <script type="text/javascript">
+    $("head").append(
+      "<style>.navbarMob{visibility:hidden}@media (orientation:portrait) and (height:" +
+        $(window).height() +
+        "px){.navbarMob{visibility:visible}}@media (orientation:portrait) and (height:" +
+        $(window).width() +
+        "px){.navbarMob{visibility:visible}}@media (orientation:landscape) and (height:" +
+        $(window).width() +
+        "px){.navbarMob{visibility:visible}}@media (orientation:landscape) and (height:" +
+        $(window).height() +
+        "px){.navbarMob{visibility:visible}}</style>"
+    );
+  </script>
 </html>

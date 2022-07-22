@@ -71,7 +71,7 @@ function SellItem() {
     e.preventDefault();
     setLoading(true);
     if (images.length > 4) {
-      toast.error("Images should not exceed 4");
+      toast.error("Images should not exceed 4", { toastId: "gcyuch45ub657" });
       return;
     }
     const storeImage = async (image) => {
@@ -119,7 +119,7 @@ function SellItem() {
       [...images].map((image) => storeImage(image))
     ).catch(() => {
       setLoading(false);
-      toast.error("Images not uploaded");
+      toast.error("Images not uploaded", { toastId: "gcyuch45ub657" });
       return;
     });
     try {
@@ -132,7 +132,7 @@ function SellItem() {
       setLoading(false);
       navigate(`/category/${formDataCopy.brand}/${docRef.id}`);
     } catch (error) {
-      toast.error("Unable to add Product");
+      toast.error("Unable to add Product", { toastId: "gcyuch45ub657" });
       return;
     }
   };
