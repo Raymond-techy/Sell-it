@@ -8,6 +8,7 @@ import {
   getDownloadURL,
   uploadBytesResumable,
 } from "firebase/storage";
+import { v4 as uuidV4 } from "uuid";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
@@ -71,14 +72,14 @@ function SellItem() {
     e.preventDefault();
     setLoading(true);
     if (images.length > 4) {
+      setLoading(false);
       toast.error("Images should not exceed 4", { toastId: "gcyuch45ub657" });
       return;
     }
     const storeImage = async (image) => {
       return new Promise((resolve, reject) => {
         const storage = getStorage();
-        // ${uuidv4()}
-        const fileName = `${auth.currentUser.uid}-${image.name}`;
+        const fileName = `${auth.currentUser.uid}-${image.name}-${uuidV4()}`;
 
         const storageRef = ref(storage, "images/" + fileName);
 
@@ -119,22 +120,20 @@ function SellItem() {
       [...images].map((image) => storeImage(image))
     ).catch(() => {
       setLoading(false);
-      toast.error("Images not uploaded", { toastId: "gcyuch45ub657" });
+      toast.error("Images not uploaded");
       return;
     });
-    try {
-      const formDataCopy = {
-        ...formData,
-        imgUrls,
-        timeStamp: serverTimestamp(),
-      };
-      const docRef = await addDoc(collection(db, "litings"), formDataCopy);
-      setLoading(false);
-      navigate(`/category/${formDataCopy.brand}/${docRef.id}`);
-    } catch (error) {
-      toast.error("Unable to add Product", { toastId: "gcyuch45ub657" });
-      return;
-    }
+    console.log(imgUrls);
+    const formDataCopy = {
+      ...formData,
+      imgUrls,
+      timestamp: serverTimestamp(),
+    };
+
+    const docRef = await addDoc(collection(db, "listings"), formDataCopy);
+    setLoading(false);
+    toast.success("Listings added successfully");
+    navigate(`/category/${formDataCopy.type}/${docRef.id}`);
   };
   const onChange = (e) => {
     if (e.target.files) {
