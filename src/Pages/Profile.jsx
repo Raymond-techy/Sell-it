@@ -106,8 +106,8 @@ function Profile() {
       </>
     );
   return (
-    <div className="m-0 sm:m-4 overflow-x-hidden">
-      <Card>
+    <div className="my-10 overflow-x-hidden h-full">
+      <Card className="py-16">
         <div className="flex flex-col items-center pt-8 h-screen">
           <div className="relative">
             <img
@@ -195,7 +195,7 @@ function Profile() {
               className={
                 changeDetails
                   ? "bg-slate-50 px-4 py-5 w-80 sm:w-96 ml-8 sm:ml-2 focus:border-sky-500 border-transparent bg-indigo-50 shadow  rounded-md"
-                  : "px-4 py-5 w-80 sm:w-96 ml-8 sm:ml-2 sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow rounded-md"
+                  : "px-4 py-5 w-80 sm:w-96 m-auto sm:ml-2 sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow rounded-md"
               }
               type="text"
               id="number"

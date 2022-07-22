@@ -16,6 +16,9 @@ body {
   margin: 0;
   box-sizing: border-box;
 }
+/* .navmbt {
+  margin-bottom: 200px !important;
+} */
 .passwordBox {
   position: relative;
 }

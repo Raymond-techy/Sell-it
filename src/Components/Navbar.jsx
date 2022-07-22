@@ -59,7 +59,7 @@ function Navbar() {
   ];
   return (
     <>
-      <header className="text-gray-600 body-font bg-slate-200 w-screen">
+      <header className="text-gray-600 body-font bg-slate-200 w-screen fixed top-0 z-40 navmbt">
         <div className="container mx-auto flex p-2 sm:p-5 md:flex-row sm:items-center items-end">
           <NavLink
             to="/"
