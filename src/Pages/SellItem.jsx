@@ -133,6 +133,7 @@ function SellItem() {
       navigate(`/category/${formDataCopy.brand}/${docRef.id}`);
     } catch (error) {
       toast.error("Unable to add Product");
+      return;
     }
   };
   const onChange = (e) => {

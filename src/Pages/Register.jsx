@@ -57,6 +57,7 @@ function Register() {
         toast.warning("Email has already been registered", {
           toastId: "r34-xAcu9#@(*12",
         });
+        setLoading(false);
         return;
       } else if (error.code === "auth/weak-password") {
         toast.warning(
@@ -64,6 +65,7 @@ function Register() {
           { toastId: "r34-xAcu56^%(*" },
           { autoClose: 1000 }
         );
+        setLoading(false);
         return;
       } else {
         toast.error(
