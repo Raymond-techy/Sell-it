@@ -169,7 +169,7 @@ function Profile() {
               className={
                 changeDetails
                   ? "bg-slate-200 px-4 py-5 w-80 sm:w-96 ml-8 sm:ml-2 border-blue bg-indigo-50 shadow mb-2 rounded-md"
-                  : "px-4 py-5 w-80 sm:w-96 ml-8 sm:ml-2 sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow mb-2 rounded-md"
+                  : "px-4 py-5 w-80 sm:w-96 m-auto sm:ml-2 sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow rounded-md"
               }
               type="text"
               value={name}
@@ -185,7 +185,7 @@ function Profile() {
               </p>
             )}
             <input
-              className="px-2 py-4 m-2 sm:px-6 lg:py-2 w-80 sm:w-96 ml-8 sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow mb-2 rounded-md"
+              className="px-4 py-5 w-80 sm:w-96 m-auto sm:ml-2 sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow rounded-md"
               type="text"
               value={email}
               disabled
