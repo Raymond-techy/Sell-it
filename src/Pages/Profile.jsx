@@ -211,7 +211,7 @@ function Profile() {
             )}
           </form>
           <Link
-            to="/create-listing"
+            to="/sell-item"
             className="px-4 py-5 w-64 sm:w-96 ml-8 sm:ml-2 mt-4 rounded-lg bg-blue-700 py-2 px-4 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Post an Item for Sale
