@@ -151,7 +151,7 @@ function SellItem() {
   };
   if (loading) return <h1>Loading</h1>;
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
+    <div className="min-h-screen flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
       <div className="max-w-md w-full space-y-8 overflow-x-hidden">
         <div>
           <img alt="sellit" className="mx-auto h-12 w-auto" src={sellit} />

@@ -50,10 +50,10 @@ function Navbar() {
         <PersonOutlineIcon
           width="30px"
           height="30px"
-          fill={selected === "/sell-item" ? "#2c2c2c" : "#8f8f8f"}
+          fill={selected === "/profile" ? "#2c2c2c" : "#8f8f8f"}
         />
       ),
-      path: "/sell-item",
+      path: "/profile",
       Text: "Profile",
     },
   ];
