@@ -1,18 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap");
+* {
+  box-sizing: border-box;
 }
+/* 
+html::-webkit-scrollbar {
+  display: none;
+} */
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #f2f4f8;
+  margin: 0;
+  box-sizing: border-box;
 }
 .passwordBox {
   position: relative;
@@ -27,8 +29,115 @@ code {
 .top-margins {
   margin-top: 10%;
 }
-@media (max-width: 600px) {
+.navbarMob {
+  display: none;
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 60px;
+  padding: 10px;
+  padding-left: 10%;
+  background: rgba(55, 55, 244, 0.603);
+  z-index: 100;
+}
+.nav_list {
+  width: 50%;
+  margin-right: 10%;
+}
+.nav_list_mobile {
+  display: none;
+}
+.nav_list .nav_list_sys {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-weight: 600;
+  font-size: 16px;
+  color: #f4f4f5;
+}
+.nav__logo {
+  width: 120px;
+  height: 60px;
+}
+
+@media (max-width: 640px) {
+  .navbarMob {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 85px;
+    background-color: #fff;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navbarNav {
+    width: 100%;
+    margin-top: 0.75rem;
+    overflow-y: hidden;
+  }
+
+  .navbarListItems {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .navbarListItem {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbarListItemName,
+  .navbarListItemNameActive {
+    margin-top: 0.25rem;
+    font-size: 14px;
+    font-weight: 600;
+    color: #8f8f8f;
+  }
+  .navbarListItemNameActive {
+    color: #2c2c2c;
+  }
   .top-margins {
-    margin-top: 30%;
+    margin: 30% 0 10%;
+  }
+  .leftSide {
+    position: relative;
+    top: -35px;
+    right: -70px !important;
+  }
+  .nav_list_mobile {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    bottom: 0;
+    right: 0;
+    height: 50px;
+    background: #e6e6ea;
+    width: 100vw;
+    border-radius: 0 0 5px 5px;
+  }
+  .nav_list_mobile ul li {
+    cursor: pointer;
+    padding: 10px 0;
+    color: blue;
+    margin-top: 0.75rem;
+  }
+  .nav_list .nav_list_sys {
+    display: none;
   }
 }

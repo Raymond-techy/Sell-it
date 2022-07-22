@@ -159,17 +159,17 @@ function Profile() {
               )}
             </div>
           </div>
-          <div className="px-4 py-5 m-4 sm:px-6 w-96 border-bottom dark:bg-gray-800 bg-white shadow mb-2 rounded-md">
+          <div className="px-4 py-5 m-4 sm:px-6  border-bottom dark:bg-gray-800 bg-white shadow mb-2 rounded-md justify-center align-center sm:ml-2">
             <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
               Personal Details
             </h3>
           </div>
-          <form className="flex flex-col">
+          <form className="flex flex-col justify-center align-center place-content-center">
             <input
               className={
                 changeDetails
-                  ? "bg-slate-200 px-6 py-4 m-2 lg:px-4 lg:py-2  w-96 border-blue bg-indigo-50 shadow mb-2 rounded-md"
-                  : "appearance-none rounded-none relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 bg-indigo-50 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-4"
+                  ? "bg-slate-200 px-4 py-5 w-80 sm:w-96 ml-8 sm:ml-2 border-blue bg-indigo-50 shadow mb-2 rounded-md"
+                  : "px-4 py-5 w-80 sm:w-96 ml-8 sm:ml-2 sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow mb-2 rounded-md"
               }
               type="text"
               value={name}
@@ -180,10 +180,12 @@ function Profile() {
               ref={textref}
             />
             {changeDetails && (
-              <p className="ml-2 text-pink-600 text-sm">Edit full name.</p>
+              <p className="ml-8 sm:ml-2 text-pink-600 text-sm">
+                Edit full name.
+              </p>
             )}
             <input
-              className="appearance-none rounded-none relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 bg-indigo-50 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-4"
+              className="px-2 py-4 m-2 sm:px-6 lg:py-2 w-80 sm:w-96 ml-8 sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow mb-2 rounded-md"
               type="text"
               value={email}
               disabled
@@ -192,8 +194,8 @@ function Profile() {
             <input
               className={
                 changeDetails
-                  ? "bg-slate-50 px-6 py-4 m-2 lg:px-4 lg:py-2  w-96 focus:border-sky-500 border-transparent bg-indigo-50 shadow  rounded-md"
-                  : "appearance-none rounded-none relative block w-full px-3 py-4 border border-gray-300 placeholder-gray-500 text-gray-900 bg-indigo-50 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-4"
+                  ? "bg-slate-50 px-4 py-5 w-80 sm:w-96 ml-8 sm:ml-2 focus:border-sky-500 border-transparent bg-indigo-50 shadow  rounded-md"
+                  : "px-4 py-5 w-80 sm:w-96 ml-8 sm:ml-2 sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow rounded-md"
               }
               type="text"
               id="number"
@@ -203,14 +205,16 @@ function Profile() {
               onChange={onChange}
             />
             {changeDetails && (
-              <p className="ml-2 text-pink-600 text-sm">Edit mobile number.</p>
+              <p className="ml-8 sm:ml-2 text-pink-600 text-sm">
+                Edit mobile number.
+              </p>
             )}
           </form>
           <Link
-            to="/form"
-            className="px-4 py-2 w-96 rounded-lg bg-blue-700 py-2 px-4 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            to="/create-listing"
+            className="px-4 py-5 w-64 sm:w-96 ml-8 sm:ml-2 mt-4 rounded-lg bg-blue-700 py-2 px-4 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Post Item for Sale
+            Post an Item for Sale
           </Link>
         </div>
       </Card>

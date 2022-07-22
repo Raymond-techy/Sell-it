@@ -34,10 +34,22 @@ function Login() {
         navigate("/profile");
       }
     } catch (error) {
-      toast.error("Invalid Email or password");
+      console.log(error.code);
+      if (error.code === "auth/network-request-failed") {
+        toast.error(
+          "Network Error",
+          { toastId: "r34-xAcu9#@(*" },
+          { autoClose: 1000 }
+        );
+      } else {
+        toast.error(
+          "Invalid Email or password",
+          { toastId: "r34-xAcu93#@(*" },
+          { autoClose: 1000 }
+        );
+      }
     }
     setLoading(false);
-    console.log(formData);
   };
   const passwordToggle = () => {
     setPasswordVisible((prevState) => !prevState);
@@ -46,11 +58,6 @@ function Login() {
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <img
-            className="mx-auto h-12 w-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-            alt="Workflow"
-          />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Sign in to your account
           </h2>

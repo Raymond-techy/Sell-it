@@ -7,15 +7,23 @@ import Profile from "./Pages/Profile";
 import Explore from "./Pages/Explore";
 import ProtectedRouted from "./Pages/ProtectedRouted";
 import ForgotPassword from "./Pages/ForgotPassword";
+import Navbar from "./Components/Navbar";
+import SellItem from "./Pages/SellItem";
+import CategoryPage from "./Pages/CategoryPage";
+import Wishlist from "./Pages/Wishlist";
 function App() {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Explore />} />
         <Route path="/sign-in" element={<Login />} />
         <Route path="/sign-up" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/sell-item" element={<SellItem />} />
+        <Route path="/wish-list" element={<Wishlist />} />
+        <Route path="/category/:categoryType" element={<CategoryPage />} />
         <Route path="/profile" element={<ProtectedRouted />}>
           <Route path="/profile" element={<Profile />} />
         </Route>
