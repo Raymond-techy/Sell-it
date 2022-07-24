@@ -11,6 +11,7 @@ import Navbar from "./Components/Navbar";
 import SellItem from "./Pages/SellItem";
 import CategoryPage from "./Pages/CategoryPage";
 import Wishlist from "./Pages/Wishlist";
+import Productpage from "./Pages/Productpage";
 function App() {
   return (
     <Router>
@@ -24,6 +25,10 @@ function App() {
         <Route path="/sell-item" element={<SellItem />} />
         <Route path="/wish-list" element={<Wishlist />} />
         <Route path="/category/:categoryType" element={<CategoryPage />} />
+        <Route
+          path="/category/:categoryType/:productId"
+          element={<Productpage />}
+        />
         <Route path="/profile" element={<ProtectedRouted />}>
           <Route path="/profile" element={<Profile />} />
         </Route>

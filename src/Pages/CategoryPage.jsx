@@ -11,7 +11,6 @@ import {
 } from "firebase/firestore";
 import ListingItem from "../Components/ListingItem";
 import { db } from "../firebase.config";
-import { list } from "firebase/storage";
 import { toast } from "react-toastify";
 function CategoryPage() {
   const [listings, setListings] = useState(null);
@@ -59,13 +58,17 @@ function CategoryPage() {
       </h1>
     );
   return (
-    <div className="container grid grid-cols-4 gap-4 mt-28">
-      {listings.map((listing) => (
-        <div key={listing.id}>
-          <ListingItem listing={listing.data} id={listing.id} />
+    <section className="text-gray-600 body-font">
+      <div className="container px-5 py-5 mx-auto mt-16">
+        <div className="grid grid-cols-2 gap-4 sm:gap-4 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 md:gap-8">
+          {listings.map((listing) => (
+            <div key={listing.id}>
+              <ListingItem listing={listing.data} id={listing.id} />
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+    </section>
   );
 }
 

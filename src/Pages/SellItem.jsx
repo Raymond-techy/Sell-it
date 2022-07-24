@@ -21,6 +21,7 @@ function SellItem() {
     location: "",
     battery: "",
     condition: "",
+    price: "",
     ram: "",
     rom: "",
     mainCamera: "",
@@ -38,6 +39,7 @@ function SellItem() {
     selfieCamera,
     ram,
     rom,
+    price,
     location,
     narration,
     images,
@@ -103,6 +105,7 @@ function SellItem() {
             }
           },
           (error) => {
+            console.log(error);
             reject(error);
           },
           () => {
@@ -129,11 +132,13 @@ function SellItem() {
       imgUrls,
       timestamp: serverTimestamp(),
     };
-
+    delete formDataCopy.images;
+    console.log(imgUrls);
+    console.log(formDataCopy);
     const docRef = await addDoc(collection(db, "listings"), formDataCopy);
     setLoading(false);
     toast.success("Listings added successfully");
-    navigate(`/category/${formDataCopy.type}/${docRef.id}`);
+    navigate(`/category/${formDataCopy.brand}/${docRef.id}`);
   };
   const onChange = (e) => {
     if (e.target.files) {
@@ -188,10 +193,11 @@ function SellItem() {
                 required
               >
                 <option>Select Phone Brand</option>
-                <option>IPHONE</option>
-                <option>SAMSUNG</option>
-                <option>TECNO</option>
-                <option>ITEL</option>
+                <option>iphone</option>
+                <option>samsung</option>
+                <option>tecno</option>
+                <option>oppo</option>
+                <option>infinix</option>
               </select>
               <input
                 id="battery"
@@ -288,7 +294,7 @@ function SellItem() {
               </select>
             </div>
 
-            <div className="mt-4 ">
+            <div className="mt-4">
               <label htmlFor="email-address" className="sr-only">
                 Your Location
               </label>
@@ -300,6 +306,21 @@ function SellItem() {
                 className="appearance-none rounded-none mt-2 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 value={location}
                 placeholder="Your Location"
+                onChange={onChange}
+              />
+            </div>
+            <div className="mt-4 ">
+              <label htmlFor="email-address" className="sr-only">
+                Your Location
+              </label>
+              <input
+                name="price"
+                id="price"
+                type="number"
+                required
+                className="appearance-none rounded-none mt-2 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                value={price}
+                placeholder="Phone price"
                 onChange={onChange}
               />
             </div>
