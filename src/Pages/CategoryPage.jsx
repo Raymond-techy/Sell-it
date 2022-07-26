@@ -58,17 +58,18 @@ function CategoryPage() {
       </h1>
     );
   return (
-    <section className="text-gray-600 body-font">
-      <div className="container px-5 py-5 mx-auto mt-16">
-        <div className="grid grid-cols-2 gap-4 sm:gap-4 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 md:gap-8">
-          {listings.map((listing) => (
-            <div key={listing.id}>
-              <ListingItem listing={listing.data} id={listing.id} />
-            </div>
-          ))}
-        </div>
+    <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+      <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
+        {params.categoryType}
+      </h2>
+      <div className="mt-6 grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        {listings.map((listing) => (
+          <div key={listing.id} className="group relative">
+            <ListingItem listing={listing.data} id={listing.id} />
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 }
 

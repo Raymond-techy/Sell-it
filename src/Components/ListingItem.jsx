@@ -17,26 +17,44 @@ function ListingItem({ listing, id }) {
   };
   return (
     <div className="sm:w-64 w-4/5 md:w-3/4">
-      <Link to={`/category/${listing.brand}/${id}`}>
-        <div>
-          <span className="block relative h-48 rounded overflow-hidden">
-            <img
-              alt="ecommerce"
-              className="object-cover object-center w-full h-full block"
-              src={listing.imgUrls[0]}
-            />
-          </span>
-          <div className="mt-4">
-            <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-              {listing.brand}
-            </h3>
-            <h3 className="text-gray-900 title-font text-lg font-medium">
-              {listing.name}
-            </h3>
-          </div>
+      {/* <Link to={`/category/${listing.brand}/${id}`}>
+        <div className="w-full min-h-64 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+          <img
+            src={listing.imgUrls[0]}
+            alt="{listing.imageAlt}"
+            className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+          />
         </div>
-      </Link>
-      <div className="flex flex-row justify-between pr-4">
+        <div className="mt-4 flex justify-between">
+          <div>
+            <h3 className="text-sm text-gray-700">
+              <a href="https">
+                <span aria-hidden="true" className="absolute inset-0" />
+                {listing.name}
+              </a>
+            </h3>
+            <p className="mt-1 text-sm text-gray-500">{listing.brand}</p>
+          </div>
+          <p className="text-sm font-medium text-gray-900">{listing.price}</p>
+        </div>
+      </Link> */}
+      <div>
+        <Link to={`/category/${listing.brand}/${id}`}>
+          <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <img
+              src={listing.imgUrls[0]}
+              alt="listing"
+              className="w-full h-full object-center object-cover group-hover:opacity-75"
+            />
+          </div>
+          <h3 className="mt-4 text-sm text-gray-700">{listing.name}</h3>
+          <p className="mt-1 text-sm text-gray-500">{listing.brand}</p>
+          <p className="mt-1 text-lg font-medium text-gray-900">
+            {listing.price}
+          </p>
+        </Link>
+      </div>
+      {/* <div className="flex flex-row justify-between pr-4">
         <p className="mt-1">${listing.price}</p>
 
         <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:bg-blue-200">
@@ -54,7 +72,7 @@ function ListingItem({ listing, id }) {
             <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
           </svg>
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

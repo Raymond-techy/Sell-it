@@ -6,7 +6,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { db } from "../firebase.config";
 function Productpage() {
   const [listing, setListing] = useState();
-  const [imgSrc, setimgSrc] = useState();
+  const [imgSrc, setimgSrc] = useState("");
   const [loading, setLoading] = useState(true);
   const params = useParams();
   useEffect(() => {
@@ -15,11 +15,14 @@ function Productpage() {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists) {
         setListing(docSnap.data());
-        setimgSrc(listing.imgUrls[0]);
-        setLoading(false);
+        console.log(listing);
       } else {
         console.log("product not found");
       }
+      setTimeout(() => {
+        // setimgSrc(listing.imgUrls[0]);
+        setLoading(false);
+      }, 6000);
     };
     fetchProduct();
   }, [params.productId]);
@@ -29,21 +32,38 @@ function Productpage() {
       <section className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex-col relative">
-            <img
-              alt="ecommerce"
-              className="lg:w-full w-full lg:h-80 h-auto object-contain object-center rounded"
-              src={imgSrc}
-            />
-            <div className="grid gap-4 grid-cols-4 container mx-auto mt-2">
-              {listing.imgUrls.map((img) => (
+            {imgSrc === "" ? (
+              <img
+                alt="ecommerce"
+                className="lg:w-full w-full lg:h-80 h-auto object-contain object-center rounded"
+                src={listing.imgUrls[0]}
+              />
+            ) : (
+              <img
+                alt="ecommerce"
+                className="lg:w-full w-full lg:h-80 h-auto object-contain object-center rounded"
+                src={imgSrc}
+              />
+            )}
+            <div className="container grid gap-2 ml-auto grid-cols-4 container mx-auto mt-2 px-auto justify-center items-center">
+              {listing.imgUrls.map((img, index) => (
                 <span
-                  className="h-16 w-16 rounded cursor-pointer"
+                  key={index}
+                  className=" rounded cursor-pointer"
                   onClick={() => {
                     setimgSrc(img);
                   }}
                 >
                   {" "}
-                  <img alt="ecommerce" src={img} />
+                  <img
+                    alt="ecommerce"
+                    className={
+                      imgSrc === img
+                        ? "h-16 w-16 object-contain object-center rounded border-blue-900 bg-blue-900 p-1"
+                        : "h-16 w-16 object-contain object-center"
+                    }
+                    src={img}
+                  />
                 </span>
               ))}
             </div>
@@ -54,66 +74,7 @@ function Productpage() {
               <h1 className="text-gray-900 text-2xl title-font font-medium mb-1">
                 {listing.name}
               </h1>
-              <div className="flex mb-4">
-                <span className="flex items-center">
-                  <svg
-                    fill="currentColor"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 text-indigo-500"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  <svg
-                    fill="currentColor"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 text-indigo-500"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  <svg
-                    fill="currentColor"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 text-indigo-500"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  <svg
-                    fill="currentColor"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 text-indigo-500"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-4 h-4 text-indigo-500"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                  </svg>
-                  <span className="text-gray-600 ml-3">4 Reviews</span>
-                </span>
-              </div>
+
               <p className="leading-relaxed">{listing.message}</p>
               <div className="flex mt-6 items-center justify-between pb-5 border-b-2 border-gray-100 mb-5">
                 <div className="flex flex-wrap">

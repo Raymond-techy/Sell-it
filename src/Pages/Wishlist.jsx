@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
+import WishItem from "../Components/WishItem";
 function Wishlist() {
   const [wishLists, setWishList] = useState([]);
   const auth = getAuth();
@@ -26,12 +27,15 @@ function Wishlist() {
         orderBy("timestamp", "desc")
       );
       const docSnap = await getDocs(q);
-      if (docSnap.exists()) {
-        // setWishList(docSnap.data());
-        console.log(docSnap.data());
-      } else {
-        console.log("no wish items");
-      }
+      const wishItems = [];
+      docSnap.forEach((doc) => {
+        return wishItems.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+      setWishList(wishItems);
+      console.log(wishItems);
     };
     if (isMounted) {
       onAuthStateChanged(auth, (user) => {
@@ -54,9 +58,11 @@ function Wishlist() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMounted]);
   return (
-    <div>
+    <div className="mt-24">
       {wishLists.map((wishlist) => (
-        <h2>{wishlist.name}</h2>
+        <div key={wishlist.id}>
+          <WishItem WishItem={wishlist.data} />
+        </div>
       ))}
     </div>
   );
