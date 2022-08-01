@@ -169,7 +169,7 @@ function Profile() {
               className={
                 changeDetails
                   ? "bg-slate-200 px-4 py-5 w-80 sm:w-96 ml-8 sm:ml-2 border-blue-200 bg-indigo-50 shadow mb-2 rounded-md"
-                  : "px-4 py-5 w-80 sm:w-96 m-auto sm:ml-2 sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow rounded-md"
+                  : "px-4 py-5 w-80 sm:w-96 m-auto sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow rounded-md"
               }
               type="text"
               value={name}
@@ -188,7 +188,7 @@ function Profile() {
               className={
                 changeDetails
                   ? "bg-slate-200 px-4 py-5 w-80 sm:w-96 ml-8 sm:ml-2 border-blue-200 shadow mb-2 rounded-md"
-                  : "px-4 py-5 w-80 sm:w-96 m-auto sm:ml-2 sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow rounded-md"
+                  : "px-4 py-5 w-80 sm:w-96 m-auto sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow rounded-md"
               }
               type="text"
               value={email}
@@ -199,7 +199,7 @@ function Profile() {
               className={
                 changeDetails
                   ? "bg-slate-50 px-4 py-5 w-80 sm:w-96 ml-8 sm:ml-2 focus:border-sky-500 border-blue-200 bg-indigo-50 shadow  rounded-md"
-                  : "px-4 py-5 w-80 sm:w-96 m-auto sm:ml-2 sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow rounded-md"
+                  : "px-4 py-5 w-80 sm:w-96 m-auto sm:ml-2 border dark:bg-gray-800 border-transparent bg-indigo-50 shadow rounded-md"
               }
               type="text"
               id="number"
