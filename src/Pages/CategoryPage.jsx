@@ -62,7 +62,7 @@ function CategoryPage() {
       <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
         {params.categoryType}
       </h2>
-      <div className="mt-6 grid md:grid-cols-3 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         {listings.map((listing) => (
           <div key={listing.id} className="group relative">
             <ListingItem listing={listing.data} id={listing.id} />
