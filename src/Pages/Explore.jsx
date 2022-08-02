@@ -13,6 +13,7 @@ import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import gadImg from "../Components/Assets/gad.png";
 import { FaApple } from "react-icons/fa";
+import Spinner from "../Components/Spinner";
 function Explore() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -43,16 +44,9 @@ function Explore() {
 
   if (loading || listings.length === 0)
     return (
-      <h1
-        style={{
-          marginBottom: "100px",
-          height: "100vh",
-          background: "blue",
-          margin: "0 auto",
-        }}
-      >
-        Loading
-      </h1>
+      <div>
+        <Spinner />
+      </div>
     );
   return (
     <div className="flex-row justify-center items-center mt-16 container">
