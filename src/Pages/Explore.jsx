@@ -53,7 +53,7 @@ function Explore() {
       <div className="">
         <img src={gadImg} alt="phone sales" className="w-full h-auto md:mx-8" />
       </div>
-      <div className="flex flex-wrap justify-center align-center">
+      <div className="flex flex-wrap justify-center align-center mt-4">
         <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
           Top categories
         </h2>
