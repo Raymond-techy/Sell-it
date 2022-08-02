@@ -88,7 +88,7 @@ function Explore() {
             viewBox="0 0 384 512"
             width="30px"
             height="32px"
-            className="mx-auto neomor"
+            className="mx-auto"
           >
             <path d="M384 64.01c0 17.67-14.33 32-32 32h-128v352c0 17.67-14.33 31.99-32 31.99s-32-14.32-32-31.99v-352H32c-17.67 0-32-14.33-32-32s14.33-32 32-32h320C369.7 32.01 384 46.34 384 64.01z" />
           </svg>
@@ -99,7 +99,7 @@ function Explore() {
       <div>
         <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
-            {params.categoryType}
+            Trending Product
           </h2>
           <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {listings.map((listing) => (
