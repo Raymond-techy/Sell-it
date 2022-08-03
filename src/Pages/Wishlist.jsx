@@ -1,14 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {
-  doc,
-  collection,
-  getDocs,
-  where,
-  query,
-  orderBy,
-} from "firebase/firestore";
+import { collection, getDocs, where, query, orderBy } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import WishItem from "../Components/WishItem";

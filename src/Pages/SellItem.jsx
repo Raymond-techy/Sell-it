@@ -13,6 +13,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
+import Spinner from "../Components/Spinner";
 function SellItem() {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -92,20 +93,17 @@ function SellItem() {
           (snapshot) => {
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
+
             switch (snapshot.state) {
               case "paused":
-                console.log("Upload is paused");
                 break;
               case "running":
-                console.log("Upload is running");
                 break;
               default:
                 break;
             }
           },
           (error) => {
-            console.log(error);
             reject(error);
           },
           () => {
@@ -126,15 +124,12 @@ function SellItem() {
       toast.error("Images not uploaded");
       return;
     });
-    console.log(imgUrls);
     const formDataCopy = {
       ...formData,
       imgUrls,
       timestamp: serverTimestamp(),
     };
     delete formDataCopy.images;
-    console.log(imgUrls);
-    console.log(formDataCopy);
     const docRef = await addDoc(collection(db, "listings"), formDataCopy);
     setLoading(false);
     toast.success("Listings added successfully");
@@ -154,7 +149,7 @@ function SellItem() {
       }));
     }
   };
-  if (loading) return <h1>Loading</h1>;
+  if (loading) return <Spinner description="Uploading..." />;
   return (
     <div className="min-h-screen mt-12 flex items-center justify-center py-16 mb-12 px-4 sm:px-6 lg:px-8 overflow-x-hidden">
       <div className="max-w-md w-full space-y-8 overflow-x-hidden">

@@ -1,36 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
+import { FaCheck, FaDashcube } from "react-icons/fa";
 import { getAuth } from "firebase/auth";
 import { FaWhatsapp } from "react-icons/fa";
 import { db } from "../firebase.config";
+import Spinner from "../Components/Spinner";
 function Productpage() {
   const [listing, setListing] = useState();
   const [imgSrc, setimgSrc] = useState("");
   const [loading, setLoading] = useState(true);
   const params = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchProduct = async () => {
       const docRef = doc(db, "listings", params.productId);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists) {
         setListing(docSnap.data());
-        console.log(listing);
       } else {
-        console.log("product not found");
+        navigate("/");
       }
       setTimeout(() => {
-        // setimgSrc(listing.imgUrls[0]);
         setLoading(false);
-      }, 6000);
+      }, 3000);
     };
     fetchProduct();
   }, [params.productId]);
-  if (loading) return <h2>Loading....</h2>;
+  if (loading || listing.length === 0)
+    return <Spinner description="loading..." />;
   return (
     <div className="">
       <section className="text-gray-600 body-font overflow-hidden">
-        <div className="container px-5 py-24 mx-auto">
+        <div className="container px-5 pt-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex-col relative">
             {imgSrc === "" ? (
               <img
@@ -75,36 +77,144 @@ function Productpage() {
                 {listing.name}
               </h1>
 
-              <p className="leading-relaxed">{listing.message}</p>
-              <div className="flex mt-6 items-center justify-between pb-5 border-b-2 border-gray-100 mb-5">
-                <div className="flex flex-wrap">
-                  <span className="mr-3">Ram:{listing.ram}</span>
-                  <span className="mr-3">Internal Storage:{listing.rom}</span>
-                </div>
-              </div>
-              <div className="flex">
-                <span className="title-font font-medium text-2xl text-gray-900">
-                  ${listing.price}
-                </span>
-                <button className="flex ml-auto flex-row text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                  <a href={`yufbb`} className="inline-block">
-                    Buy via <FaWhatsapp color="green" />
-                  </a>
-                </button>
-                <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                  <svg
-                    fill="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                  </svg>
-                </button>
-              </div>
+              <p className="leading-relaxed">{listing.description}</p>
             </div>
+          </div>
+        </div>
+      </section>
+      {/* Item description */}
+      <section class="text-gray-600 body-font">
+        <div class="container px-5 mx-auto">
+          <div class="lg:w-2/3 w-full mx-auto overflow-auto">
+            <table class="table-auto w-full text-left whitespace-no-wrap">
+              <thead>
+                <tr>
+                  <th class="px-4 py-3 title-font tracking-wider font-lg text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
+                    Product
+                  </th>
+                  <th class="px-4 py-3 title-font tracking-wider font-lg text-gray-900 text-sm bg-gray-100">
+                    Details
+                  </th>
+                  <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"></th>
+                  <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="px-4 py-3">Ram</td>
+                  <td class="px-4 py-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      width="20px"
+                      height="20px"
+                    >
+                      <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
+                    </svg>
+                  </td>
+                  <td class="px-4 py-3">{listing.ram}</td>
+                </tr>
+                <tr>
+                  <td class="border-t-2 border-gray-200 px-4 py-3">
+                    Internal Storage
+                  </td>
+                  <td class="border-t-2 border-gray-200 px-4 py-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      width="30px"
+                      height="20px"
+                    >
+                      <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
+                    </svg>
+                  </td>
+                  <td class="border-t-2 border-gray-200 px-4 py-3">
+                    {listing.rom}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="border-t-2 border-gray-200 px-4 py-3">
+                    Seller's Location
+                  </td>
+                  <td class="border-t-2 border-gray-200 px-4 py-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      width="30px"
+                      height="20px"
+                    >
+                      <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
+                    </svg>
+                  </td>
+                  <td class="border-t-2 border-gray-200 px-4 py-3">
+                    {listing.location}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                    Selfie Camera
+                  </td>
+                  <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      width="30px"
+                      height="20px"
+                    >
+                      <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
+                    </svg>
+                  </td>
+                  <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                    {listing.selfieCamera === "Yes" ? (
+                      <FaCheck />
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
+                        width="25px"
+                        height="25px"
+                      >
+                        <path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z" />
+                      </svg>
+                    )}
+                  </td>
+                </tr>
+                <tr>
+                  <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                    Main Camera
+                  </td>
+                  <td>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      width="20px"
+                      height="20px"
+                    >
+                      <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
+                    </svg>
+                  </td>
+                  <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                    {listing.mainCamera === "Yes" ? (
+                      <FaCheck />
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 320 512"
+                        width="20px"
+                        height="20px"
+                      >
+                        <path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z" />
+                      </svg>
+                    )}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
+            <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+              Buy Now
+            </button>
           </div>
         </div>
       </section>

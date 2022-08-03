@@ -12,8 +12,6 @@ function ListingItem({ listing, id }) {
       timestamp: serverTimestamp(),
     };
     await addDoc(collection(db, "wishlists"), wishItem);
-
-    console.log(wishItem);
   };
   return (
     <div className="w-full">

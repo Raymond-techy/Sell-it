@@ -75,8 +75,8 @@ function Navbar() {
                 onClick={() => setSelected(navbar.Title)}
                 className={
                   selected === navbar.Title
-                    ? "mr-5 hover:text-blue-900 font-bold"
-                    : "p-2 mr-5 hover:text-zinc-900"
+                    ? "mr-5 hover:text-blue-900 font-bold cursor-pointer"
+                    : "p-2 mr-5 hover:text-zinc-900 cursor-pointer"
                 }
               >
                 {navbar.Title}
