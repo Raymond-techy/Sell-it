@@ -12,6 +12,7 @@ import {
 import ListingItem from "../Components/ListingItem";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
+import Spinner from "../Components/Spinner";
 function CategoryPage() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -45,18 +46,7 @@ function CategoryPage() {
   }, [params.CategoryType]);
 
   if (loading || listings.length === 0)
-    return (
-      <h1
-        style={{
-          marginBottom: "100px",
-          height: "100vh",
-          background: "blue",
-          margin: "0 auto",
-        }}
-      >
-        Loading
-      </h1>
-    );
+    return <Spinner description="loading" />;
   return (
     <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
       <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
