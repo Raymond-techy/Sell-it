@@ -16,7 +16,7 @@ function Explore() {
     const fetchListings = async () => {
       try {
         const listingRef = collection(db, "listings");
-        const q = query(listingRef, orderBy("timestamp", "desc"), limit(10));
+        const q = query(listingRef, orderBy("timestamp", "desc"), limit(12));
         const querySnap = await getDocs(q);
         const listings = [];
         querySnap.forEach((doc) => {

@@ -25,7 +25,7 @@ function CategoryPage() {
         listingRef,
         where("brand", "==", params.categoryType),
         orderBy("timestamp", "desc"),
-        limit(10)
+        limit(12)
       );
       const querySnap = await getDocs(q);
       const listings = [];
