@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   collection,
   getDocs,
@@ -17,7 +17,7 @@ function CategoryPage() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
   const params = useParams();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchListings = async () => {
       try {
@@ -25,6 +25,7 @@ function CategoryPage() {
         const q = query(
           listingRef,
           where("brand", "==", params.categoryType),
+          orderBy("timestamp", "desc"),
           limit(10)
         );
         const querySnap = await getDocs(q);
@@ -39,7 +40,8 @@ function CategoryPage() {
         setListings(listings);
         setLoading(false);
       } catch (error) {
-        toast.error("Couldnt fetch listings");
+        toast.error("Couldnt fetch listings", { toastId: "ryux7y7*Yh7gbyub" });
+        navigate("/");
       }
     };
     fetchListings();

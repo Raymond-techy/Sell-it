@@ -74,33 +74,52 @@ function Productpage() {
               <h1 className="text-gray-900 text-2xl title-font font-medium mb-1">
                 {listing.name}
               </h1>
-
+            </div>
+            <div className="flex justify-between">
               <p className="leading-relaxed">{listing.description}</p>
+              <p className="text-gray-900">
+                ₦{listing.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              </p>
+            </div>
+
+            <div className="flex lg:w-2/3 w-full sm:mx-4 pb-8">
+              <a
+                href={`https://wa.me/+234${listing.sellerContact.substring(
+                  1
+                )}?text=%7B0%7D+I would love to Purchase your ${
+                  listing.name
+                } on Sellit.`}
+                rel="norefferer"
+              >
+                <button className="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                  Buy Now
+                </button>
+              </a>
             </div>
           </div>
         </div>
       </section>
       {/* Item description */}
-      <section class="text-gray-600 body-font">
-        <div class="container px-5 mx-auto pb-16">
-          <div class="lg:w-2/3 w-full mx-auto overflow-auto">
-            <table class="table-auto w-full text-left whitespace-no-wrap">
+      <section className="text-gray-600 body-font">
+        <div className="container px-5 mx-auto pb-16">
+          <div className="lg:w-2/3 w-full mx-auto overflow-auto">
+            <table className="table-auto w-full text-left whitespace-no-wrap">
               <thead>
                 <tr>
-                  <th class="px-4 py-3 title-font tracking-wider font-lg text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
+                  <th className="px-4 py-3 title-font tracking-wider font-lg text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
                     Product
                   </th>
-                  <th class="px-4 py-3 title-font tracking-wider font-lg text-gray-900 text-sm bg-gray-100">
+                  <th className="px-4 py-3 title-font tracking-wider font-lg text-gray-900 text-sm bg-gray-100">
                     Details
                   </th>
-                  <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"></th>
-                  <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"></th>
+                  <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"></th>
+                  <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"></th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td class="px-4 py-3">Ram</td>
-                  <td class="px-4 py-3">
+                  <td className="px-4 py-3">Ram</td>
+                  <td className="px-4 py-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
@@ -110,13 +129,13 @@ function Productpage() {
                       <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
                     </svg>
                   </td>
-                  <td class="px-4 py-3">{listing.ram}</td>
+                  <td className="px-4 py-3">{listing.ram}</td>
                 </tr>
                 <tr>
-                  <td class="border-t-2 border-gray-200 px-4 py-3">
+                  <td className="border-t-2 border-gray-200 px-4 py-3">
                     Internal Storage
                   </td>
-                  <td class="border-t-2 border-gray-200 px-4 py-3">
+                  <td className="border-t-2 border-gray-200 px-4 py-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
@@ -126,15 +145,15 @@ function Productpage() {
                       <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
                     </svg>
                   </td>
-                  <td class="border-t-2 border-gray-200 px-4 py-3">
+                  <td className="border-t-2 border-gray-200 px-4 py-3">
                     {listing.rom}
                   </td>
                 </tr>
                 <tr>
-                  <td class="border-t-2 border-gray-200 px-4 py-3">
+                  <td className="border-t-2 border-gray-200 px-4 py-3">
                     Seller's Location
                   </td>
-                  <td class="border-t-2 border-gray-200 px-4 py-3">
+                  <td className="border-t-2 border-gray-200 px-4 py-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
@@ -144,15 +163,15 @@ function Productpage() {
                       <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
                     </svg>
                   </td>
-                  <td class="border-t-2 border-gray-200 px-4 py-3">
+                  <td className="border-t-2 border-gray-200 px-4 py-3">
                     {listing.location}
                   </td>
                 </tr>
                 <tr>
-                  <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
                     Selfie Camera
                   </td>
-                  <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
@@ -162,7 +181,7 @@ function Productpage() {
                       <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
                     </svg>
                   </td>
-                  <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
                     {listing.selfieCamera === "Yes" ? (
                       <FaCheck />
                     ) : (
@@ -178,7 +197,7 @@ function Productpage() {
                   </td>
                 </tr>
                 <tr>
-                  <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
                     Main Camera
                   </td>
                   <td>
@@ -191,7 +210,7 @@ function Productpage() {
                       <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
                     </svg>
                   </td>
-                  <td class="border-t-2 border-b-2 border-gray-200 px-4 py-3">
+                  <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
                     {listing.mainCamera === "Yes" ? (
                       <FaCheck />
                     ) : (
@@ -208,11 +227,6 @@ function Productpage() {
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="flex mt-4 lg:w-2/3 w-full mx-auto pb-16">
-            <button class="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-              Buy Now
-            </button>
           </div>
         </div>
       </section>

@@ -76,6 +76,13 @@ function SellItem() {
   const submitForm = async (e) => {
     e.preventDefault();
     setLoading(true);
+    if (brand === "") {
+      setLoading(false);
+      toast.error("Please select phone Brand", {
+        toastId: "gcyuch45ub65756%^",
+      });
+      return;
+    }
     if (images.length > 4) {
       setLoading(false);
       toast.error("Images should not exceed 4", { toastId: "gcyuch45ub657" });
@@ -308,15 +315,16 @@ function SellItem() {
               />
             </div>
             <div className="mt-4">
-              <label htmlFor="email-address" className="sr-only">
+              <label htmlFor="email-address" className="">
                 Your Location
               </label>
               <input
                 name="sellerContact"
                 id="sellerContact"
-                type="number"
-                min="11"
-                max="11"
+                type="text"
+                size="13"
+                maxLength="11"
+                minLength="11"
                 required
                 className="appearance-none rounded-none mt-2 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 value={sellerContact}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { collection, getDocs, query, limit } from "firebase/firestore";
+import { collection, getDocs, query, limit, orderBy } from "firebase/firestore";
 import ListingItem from "../Components/ListingItem";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
@@ -16,7 +16,7 @@ function Explore() {
     const fetchListings = async () => {
       try {
         const listingRef = collection(db, "listings");
-        const q = query(listingRef, limit(10));
+        const q = query(listingRef, orderBy("timestamp", "desc"), limit(10));
         const querySnap = await getDocs(q);
         const listings = [];
         querySnap.forEach((doc) => {
