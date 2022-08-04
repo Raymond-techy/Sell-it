@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
-import { FaCheck, FaDashcube } from "react-icons/fa";
-import { getAuth } from "firebase/auth";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 import { db } from "../firebase.config";
 import Spinner from "../Components/Spinner";
 function Productpage() {

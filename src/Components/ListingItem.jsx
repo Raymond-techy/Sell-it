@@ -27,7 +27,7 @@ function ListingItem({ listing, id }) {
           <h3 className="mt-4 text-sm text-gray-700">{listing.name}</h3>
           <p className="mt-1 text-sm text-gray-500">{listing.brand}</p>
           <p className="mt-1 text-lg font-medium text-gray-900">
-            {listing.price}
+            ₦{listing.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </p>
         </Link>
         <div className="absolute bottom-1 right-2">

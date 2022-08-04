@@ -20,29 +20,24 @@ function CategoryPage() {
   const navigate = useNavigate();
   useEffect(() => {
     const fetchListings = async () => {
-      try {
-        const listingRef = collection(db, "listings");
-        const q = query(
-          listingRef,
-          where("brand", "==", params.categoryType),
-          orderBy("timestamp", "desc"),
-          limit(10)
-        );
-        const querySnap = await getDocs(q);
-        const listings = [];
-        querySnap.forEach((doc) => {
-          return listings.push({
-            id: doc.id,
-            data: doc.data(),
-          });
+      const listingRef = collection(db, "listings");
+      const q = query(
+        listingRef,
+        where("brand", "==", params.categoryType),
+        orderBy("timestamp", "desc"),
+        limit(10)
+      );
+      const querySnap = await getDocs(q);
+      const listings = [];
+      querySnap.forEach((doc) => {
+        return listings.push({
+          id: doc.id,
+          data: doc.data(),
         });
-        console.log(listings);
-        setListings(listings);
-        setLoading(false);
-      } catch (error) {
-        toast.error("Couldnt fetch listings", { toastId: "ryux7y7*Yh7gbyub" });
-        navigate("/");
-      }
+      });
+      console.log(listings);
+      setListings(listings);
+      setLoading(false);
     };
     fetchListings();
   }, [params.CategoryType]);

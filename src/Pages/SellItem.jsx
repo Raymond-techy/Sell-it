@@ -315,7 +315,7 @@ function SellItem() {
               />
             </div>
             <div className="mt-4">
-              <label htmlFor="email-address" className="">
+              <label htmlFor="email-address" className="sr-only">
                 Your Location
               </label>
               <input
