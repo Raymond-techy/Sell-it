@@ -50,7 +50,7 @@ function CategoryPage() {
   if (loading || listings.length === 0)
     return <Spinner description="loading" />;
   return (
-    <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div className="max-w-2xl mx-auto py-24 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
       <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
         {params.categoryType}
       </h2>

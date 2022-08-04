@@ -8,7 +8,6 @@ import Explore from "./Pages/Explore";
 import ProtectedRouted from "./Pages/ProtectedRouted";
 import ForgotPassword from "./Pages/ForgotPassword";
 import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
 import SellItem from "./Pages/SellItem";
 import CategoryPage from "./Pages/CategoryPage";
 import Wishlist from "./Pages/Wishlist";
