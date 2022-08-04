@@ -50,8 +50,8 @@ function Explore() {
             className="w-full h-auto md:mx-8"
           />
         </div>
-        <div className="flex flex-wrap justify-center align-center mt-4">
-          <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
+        <div className="flex flex-wrap justify-center align-center mt-16">
+          <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 mb-2">
             Top categories
           </h2>
         </div>
@@ -114,7 +114,7 @@ function Explore() {
           </div>
         </div>
       </div>
-      {!loading && listings.length >= 1 && <Footer />}
+      {!loading && listings.length > 1 && <Footer />}
     </>
   );
 }

@@ -4,6 +4,7 @@ import { getDoc, doc } from "firebase/firestore";
 import { FaCheck } from "react-icons/fa";
 import { db } from "../firebase.config";
 import Spinner from "../Components/Spinner";
+import { FaWhatsapp } from "react-icons/fa";
 function Productpage() {
   const [listing, setListing] = useState();
   const [imgSrc, setimgSrc] = useState("");
@@ -90,7 +91,7 @@ function Productpage() {
                 rel="norefferer"
               >
                 <button className="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                  Buy Now
+                  Buy via <FaWhatsapp className="mt-1 pl-1" color="#f5f5f5" />
                 </button>
               </a>
             </div>
@@ -147,24 +148,47 @@ function Productpage() {
                     {listing.rom}
                   </td>
                 </tr>
-                <tr>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">
-                    Seller's Location
-                  </td>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 448 512"
-                      width="30px"
-                      height="20px"
-                    >
-                      <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
-                    </svg>
-                  </td>
-                  <td className="border-t-2 border-gray-200 px-4 py-3">
-                    {listing.location}
-                  </td>
-                </tr>
+
+                {listing.brand === "iphone" && (
+                  <tr>
+                    <td className="border-t-2 border-gray-200 px-4 py-3">
+                      Battery Health
+                    </td>
+                    <td className="border-t-2 border-gray-200 px-4 py-3">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                        width="30px"
+                        height="20px"
+                      >
+                        <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
+                      </svg>
+                    </td>
+                    <td className="border-t-2 border-gray-200 px-4 py-3">
+                      {listing.bh}
+                    </td>
+                  </tr>
+                )}
+                {listing.brand !== "iphone" && (
+                  <tr>
+                    <td className="border-t-2 border-gray-200 px-4 py-3">
+                      Battery Strength
+                    </td>
+                    <td className="border-t-2 border-gray-200 px-4 py-3">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                        width="30px"
+                        height="20px"
+                      >
+                        <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
+                      </svg>
+                    </td>
+                    <td className="border-t-2 border-gray-200 px-4 py-3">
+                      <p>{listing.battery} mah</p>
+                    </td>
+                  </tr>
+                )}
                 <tr>
                   <td className="border-t-2 border-b-2 border-gray-200 px-4 py-3">
                     Selfie Camera
@@ -221,6 +245,24 @@ function Productpage() {
                         <path d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z" />
                       </svg>
                     )}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="border-t-2 border-gray-200 px-4 py-3">
+                    Seller's Location
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-4 py-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      width="30px"
+                      height="20px"
+                    >
+                      <path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z" />
+                    </svg>
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-4 py-3">
+                    {listing.location}
                   </td>
                 </tr>
               </tbody>

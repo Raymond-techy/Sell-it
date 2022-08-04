@@ -30,6 +30,7 @@ function SellItem() {
     brand: "",
     narration: "",
     sellerContact: "",
+    bh: "",
     images: {},
   });
   const {
@@ -45,6 +46,7 @@ function SellItem() {
     location,
     narration,
     sellerContact,
+    bh,
     images,
   } = formData;
 
@@ -116,8 +118,6 @@ function SellItem() {
             reject(error);
           },
           () => {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               resolve(downloadURL);
             });
@@ -204,16 +204,30 @@ function SellItem() {
                 <option>oppo</option>
                 <option>infinix</option>
               </select>
-              <input
-                id="battery"
-                name="battery"
-                type="text"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mt-4"
-                placeholder="Battery(mah)"
-                value={battery}
-                onChange={onChange}
-              />
+              {brand !== "iphone" && (
+                <input
+                  id="battery"
+                  name="battery"
+                  type="text"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mt-4"
+                  placeholder="Battery(mah)"
+                  value={battery}
+                  onChange={onChange}
+                />
+              )}
+              {brand === "iphone" && (
+                <input
+                  id="bh"
+                  name="bh"
+                  type="text"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mt-4"
+                  placeholder="Battery Health(%)"
+                  value={battery}
+                  onChange={onChange}
+                />
+              )}
               <input
                 id="model"
                 name="model"
