@@ -18,6 +18,7 @@ function Productpage() {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists) {
         setListing(docSnap.data());
+        console.log(listing);
       } else {
         navigate("/");
       }
@@ -47,24 +48,21 @@ function Productpage() {
                 src={imgSrc}
               />
             )}
-            <div className="container grid gap-2 ml-auto grid-cols-4 container mx-auto mt-2 px-auto justify-center items-center">
+            <div className="container grid gap-2 ml-auto grid-cols-4 container mx-auto mt-2 mx-auto justify-center items-center">
               {listing.imgUrls.map((img, index) => (
-                <span
-                  key={index}
-                  className=" rounded cursor-pointer"
-                  onClick={() => {
-                    setimgSrc(img);
-                  }}
-                >
+                <span key={index} className="rounded mx-auto">
                   {" "}
                   <img
                     alt="ecommerce"
                     className={
                       imgSrc === img
-                        ? "h-16 w-16 object-contain object-center rounded border-blue-900 bg-blue-900 p-1"
-                        : "h-16 w-16 object-contain object-center"
+                        ? "h-16 w-16 object-contain object-center rounded border-blue-900 bg-blue-100 p-1 cursor-pointer"
+                        : "h-16 w-16 object-contain object-center cursor-pointer"
                     }
                     src={img}
+                    onClick={() => {
+                      setimgSrc(img);
+                    }}
                   />
                 </span>
               ))}
@@ -84,7 +82,7 @@ function Productpage() {
       </section>
       {/* Item description */}
       <section class="text-gray-600 body-font">
-        <div class="container px-5 mx-auto">
+        <div class="container px-5 mx-auto pb-16">
           <div class="lg:w-2/3 w-full mx-auto overflow-auto">
             <table class="table-auto w-full text-left whitespace-no-wrap">
               <thead>
@@ -211,8 +209,8 @@ function Productpage() {
               </tbody>
             </table>
           </div>
-          <div class="flex pl-4 mt-4 lg:w-2/3 w-full mx-auto">
-            <button class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+          <div class="flex mt-4 lg:w-2/3 w-full mx-auto pb-16">
+            <button class="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
               Buy Now
             </button>
           </div>

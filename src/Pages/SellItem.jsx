@@ -29,6 +29,7 @@ function SellItem() {
     selfieCamera: "",
     brand: "",
     narration: "",
+    sellerContact: "",
     images: {},
   });
   const {
@@ -43,6 +44,7 @@ function SellItem() {
     price,
     location,
     narration,
+    sellerContact,
     images,
   } = formData;
 
@@ -134,6 +136,7 @@ function SellItem() {
     setLoading(false);
     toast.success("Listings added successfully");
     navigate(`/category/${formDataCopy.brand}/${docRef.id}`);
+    console.log(formDataCopy);
   };
   const onChange = (e) => {
     if (e.target.files) {
@@ -301,6 +304,23 @@ function SellItem() {
                 className="appearance-none rounded-none mt-2 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 value={location}
                 placeholder="Your Location"
+                onChange={onChange}
+              />
+            </div>
+            <div className="mt-4">
+              <label htmlFor="email-address" className="sr-only">
+                Your Location
+              </label>
+              <input
+                name="sellerContact"
+                id="sellerContact"
+                type="number"
+                min="11"
+                max="11"
+                required
+                className="appearance-none rounded-none mt-2 relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                value={sellerContact}
+                placeholder="Your Mobile Number(e.g 08056789876)"
                 onChange={onChange}
               />
             </div>

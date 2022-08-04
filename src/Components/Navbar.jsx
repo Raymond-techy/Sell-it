@@ -1,12 +1,19 @@
 import { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import Sellit from "./Assets/Picture73.png";
 import { ReactComponent as ExploreIcon } from "./Assets/exploreIcon.svg";
 
 import { ReactComponent as PersonOutlineIcon } from "./Assets/personOutlineIcon.svg";
 import { FaHeart, FaPlusCircle } from "react-icons/fa";
 function Navbar() {
+  const location = useLocation();
   const [selected, setSelected] = useState();
+  const pathMatch = (route) => {
+    if (route === location.pathname) {
+      return true;
+    }
+  };
+  console.log(selected, "selected tab");
   const navs = [
     { Title: "Explore", path: "/" },
     { Title: "WishList", path: "/wish-list" },
@@ -72,9 +79,11 @@ function Navbar() {
               <NavLink
                 key={index}
                 to={navbar.path}
-                onClick={() => setSelected(navbar.Title)}
+                onClick={() => {
+                  setSelected(navbar.Title);
+                }}
                 className={
-                  selected === navbar.Title
+                  selected === navbar.Title || pathMatch(navbar.path)
                     ? "mr-5 hover:text-blue-900 font-bold cursor-pointer"
                     : "p-2 mr-5 hover:text-zinc-900 cursor-pointer"
                 }
@@ -114,7 +123,7 @@ function Navbar() {
                 <span>{nav.Nav}</span>
                 <p
                   className={
-                    selected === nav.path
+                    selected === nav.path || pathMatch(nav.path)
                       ? "navbarListItemNameActive"
                       : "navbarListItemName"
                   }
