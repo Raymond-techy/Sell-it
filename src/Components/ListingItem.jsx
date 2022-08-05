@@ -1,10 +1,9 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 function ListingItem({ listing, id }) {
-  const navigate = useNavigate();
   const auth = getAuth();
   const handleAddToWish = async (listing) => {
     onAuthStateChanged(auth, (user) => {
@@ -13,7 +12,6 @@ function ListingItem({ listing, id }) {
         toast.success("Item added to wishList", { toastId: "r34-xAcu9#@(*" });
       } else if (!user) {
         toast.info("Please log in", { toastId: "r34-xAcu9#@(*" });
-        // navigate("/sign-in");
         return;
       }
     });

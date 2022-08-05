@@ -87,7 +87,9 @@ function Productpage() {
                   1
                 )}?text=%7B0%7D+I would love to Purchase your ${
                   listing.name
-                } on Sellit.`}
+                } on Sellit at (https://sell-it-lit.vercel.app/category/${
+                  listing.brand
+                }/${listing.id}.)`}
                 rel="norefferer"
               >
                 <button className="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">

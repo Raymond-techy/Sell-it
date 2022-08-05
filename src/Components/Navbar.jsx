@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import Sellit from "./Assets/Picture73.png";
 import { ReactComponent as ExploreIcon } from "./Assets/exploreIcon.svg";
@@ -7,7 +6,6 @@ import { ReactComponent as PersonOutlineIcon } from "./Assets/personOutlineIcon.
 import { FaHeart, FaPlusCircle } from "react-icons/fa";
 function Navbar() {
   const location = useLocation();
-  const [selected, setSelected] = useState();
   const pathMatch = (route) => {
     if (route === location.pathname) {
       return true;
@@ -18,12 +16,13 @@ function Navbar() {
     { Title: "WishList", path: "/wish-list" },
     { Title: "Sell Item", path: "/sell-item" },
     { Title: "Login", path: "/sign-in" },
+    { Title: "Profile", path: "/profile" },
   ];
   const navsMobile = [
     {
       Nav: (
         <ExploreIcon
-          fill={selected === "/" ? "#2c2c2c" : "#8f8f8f"}
+          fill={pathMatch("/") ? "#2c2c2c" : "#8f8f8f"}
           width="30px"
           height="30px"
         />
@@ -34,7 +33,7 @@ function Navbar() {
     {
       Nav: (
         <FaPlusCircle
-          color={selected === "/sell-item" ? "#2c2c2c" : "#8f8f8f"}
+          color={pathMatch("/sell-item") ? "#2c2c2c" : "#8f8f8f"}
           size={24}
         />
       ),
@@ -44,7 +43,7 @@ function Navbar() {
     {
       Nav: (
         <FaHeart
-          color={selected === "/wish-list" ? "#2c2c2c" : "#8f8f8f"}
+          color={pathMatch("/wish-list") ? "#2c2c2c" : "#8f8f8f"}
           size={24}
         />
       ),
@@ -56,7 +55,7 @@ function Navbar() {
         <PersonOutlineIcon
           width="30px"
           height="30px"
-          fill={selected === "/profile" ? "#2c2c2c" : "#8f8f8f"}
+          fill={pathMatch("/profile") ? "#2c2c2c" : "#8f8f8f"}
         />
       ),
       path: "/profile",
@@ -78,11 +77,8 @@ function Navbar() {
               <NavLink
                 key={index}
                 to={navbar.path}
-                onClick={() => {
-                  setSelected(navbar.Title);
-                }}
                 className={
-                  selected === navbar.Title || pathMatch(navbar.path)
+                  pathMatch(navbar.path)
                     ? "mr-5 hover:text-blue-900 font-bold cursor-pointer"
                     : "p-2 mr-5 hover:text-zinc-900 cursor-pointer"
                 }
@@ -111,18 +107,11 @@ function Navbar() {
         <div className="navbarNav">
           <ul className="navbarListItems">
             {navsMobile.map((nav, index) => (
-              <Link
-                to={nav.path}
-                className="navbarListItem"
-                key={index}
-                onClick={() => {
-                  setSelected(nav.path);
-                }}
-              >
+              <Link to={nav.path} className="navbarListItem" key={index}>
                 <span>{nav.Nav}</span>
                 <p
                   className={
-                    selected === nav.path || pathMatch(nav.path)
+                    pathMatch(nav.path)
                       ? "navbarListItemNameActive"
                       : "navbarListItemName"
                   }

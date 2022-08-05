@@ -4,6 +4,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {
   collection,
   getDocs,
+  doc,
+  deleteDoc,
   where,
   query,
   orderBy,
@@ -40,6 +42,7 @@ function Wishlist() {
         });
         setWishList(wishItems);
         setLoading(false);
+        console.log(wishLists, "wishLists");
       } catch (error) {
         toast.error("unable to get wish lists", { toastId: "YU$V%^^$TG" });
         navigate("/");
@@ -66,56 +69,71 @@ function Wishlist() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMounted]);
 
+  const deleteWish = async (wishId) => {
+    try {
+      await deleteDoc(doc(db, "wishlists", wishId));
+      console.log(wishId, "wishIds");
+      const updatedWishList = (wishId) => {
+        wishLists.filter((wish) => wish.id !== wishId);
+      };
+      setWishList(updatedWishList);
+    } catch (error) {
+      console.log(error);
+      toast.error("error", { toastId: "#@#433szxdz#@23" });
+    }
+  };
+
   if (loading) return <Spinner description="Loading" />;
-  if (wishLists.length === 0) {
-    return (
-      <div>
-        <h1 className="sm:text-4xl text-2xl font-medium title-font mb-2 text-gray-900">
-          You Have not added any item to your wish
-        </h1>
-      </div>
-    );
-  }
+
   return (
     <div className="mt-16 pb-24">
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-col text-center w-full mb-8">
-            <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">
-              Your Saved Item
-            </h1>
+      {wishLists?.length !== 0 ? (
+        <section className="text-gray-600 body-font">
+          <div className="container px-5 py-24 mx-auto">
+            <div className="flex flex-col text-center w-full mb-8">
+              <h1 className="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">
+                Your Saved Item
+              </h1>
+            </div>
+            <div className="lg:w-2/3 w-full mx-auto overflow-auto">
+              <table className="table-auto w-full text-left whitespace-no-wrap">
+                <thead>
+                  <tr>
+                    <th className="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                    <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl"></th>
+                    <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                      Name
+                    </th>
+                    <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                      Qty
+                    </th>
+                    <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                      Price
+                    </th>
+                    <th className="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {wishLists?.map((wishlist) => (
+                    <WishItem
+                      WishItem={wishlist.data}
+                      id={wishlist.id}
+                      key={wishlist.id}
+                      handleDelete={deleteWish}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div className="lg:w-2/3 w-full mx-auto overflow-auto">
-            <table className="table-auto w-full text-left whitespace-no-wrap">
-              <thead>
-                <tr>
-                  <th className="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
-                  <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl"></th>
-                  <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
-                    Name
-                  </th>
-                  <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
-                    Qty
-                  </th>
-                  <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
-                    Price
-                  </th>
-                  <th className="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {wishLists.map((wishlist) => (
-                  <WishItem
-                    WishItem={wishlist.data}
-                    id={wishlist.id}
-                    key={wishlist.id}
-                  />
-                ))}
-              </tbody>
-            </table>
-          </div>
+        </section>
+      ) : (
+        <div className="flex justify-center align-center mt-24">
+          <h1 className="font-medium title-font mb-2 text-gray-900">
+            You Have not added any item to your wish
+          </h1>
         </div>
-      </section>
+      )}
     </div>
   );
 }
