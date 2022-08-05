@@ -40,6 +40,7 @@ function Myproduct() {
         setMyProducts(myItems);
         setLoading(false);
       } catch (error) {
+        console.log(error);
         toast.error("An error occured", { toastId: "YU$V%^^$T%$G" });
         navigate("/");
       }
@@ -48,7 +49,7 @@ function Myproduct() {
       onAuthStateChanged(auth, (user) => {
         if (user) {
           fetchMyProducts();
-          console.log(myProducts);
+          console.log(myProducts, "From my product");
         } else if (!user) {
           navigate("/sign-in");
           toast.info("Please log in", { toastId: "r34-xAcu9#GH@(*" });

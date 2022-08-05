@@ -21,7 +21,7 @@ function WishItem({ WishItem, id }) {
               1
             )}?text=%7B0%7D+I would love to Purchase your ${
               WishItem.name
-            } on Sellit.`}
+            } on Sellit at (${window.location.href}.)`}
             rel="norefferer"
           >
             <button className="flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">

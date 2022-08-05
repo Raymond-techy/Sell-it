@@ -11,12 +11,8 @@ function ListingItem({ listing, id }) {
       if (user) {
         addItem();
       } else if (!user) {
-        navigate("/sign-in");
-        toast.info(
-          "Please log in",
-          { toastId: "r34-xAcu9#DBBD@(*" },
-          { autoClose: 10000 }
-        );
+        toast.info("Please log in", { toastId: "r34-xAcu9#@(*" });
+        // navigate("/sign-in");
         return;
       }
     });

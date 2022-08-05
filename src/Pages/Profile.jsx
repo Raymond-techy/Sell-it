@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { FaPencilAlt, FaSave } from "react-icons/fa";
 import { getAuth, updateProfile } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { FaUserAlt } from "react-icons/fa";
 import { db } from "../firebase.config";
 import { Card } from "flowbite-react";
 import { useNavigate, Link } from "react-router-dom";
@@ -106,18 +107,22 @@ function Profile() {
       </>
     );
   return (
-    <div className="my-10 overflow-x-hidden h-full">
+    <div className="py-24 overflow-hidden h-full">
       <Card className="py-16">
         <div className="flex flex-col items-center pt-8 h-screen">
           <div className="relative">
-            <img
+            {/* <img
               className="mb-3 h-24 w-24 rounded-full shadow-lg hover:opacity-50"
               src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
               alt="Bonnie"
+            /> */}
+            <FaUserAlt
+              className="mb-3 h-24 w-24 rounded-full shadow-lg hover:opacity-50"
+              color="#8f8f8f"
             />
             <FaPencilAlt
               className="absolute top-3 right-3 cursor-pointer"
-              color="red"
+              color="blue"
             />
           </div>
           <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
@@ -214,18 +219,20 @@ function Profile() {
               </p>
             )}
           </form>
-          <Link
-            to="/sell-item"
-            className="px-4 py-5 w-64 sm:w-96 ml-8 sm:ml-2 mt-4 rounded-lg bg-blue-700 py-2 px-4 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Post an Item for Sale
-          </Link>
-          <Link
-            to="/my-product"
-            className="px-4 py-5 w-64 sm:w-96 ml-8 sm:ml-2 mt-4 rounded-lg bg-blue-700 py-2 px-4 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            View all Your Product
-          </Link>
+          <div className="flex flex-wrap justify-center align-center pb-24">
+            <Link
+              to="/sell-item"
+              className="px-4 py-5 w-56  mt-4 rounded-lg bg-blue-700 py-2 px-4 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Post an Item for Sale
+            </Link>
+            <Link
+              to="/my-product"
+              className="px-4 py-5 w-56  mt-4 sm:ml-2 rounded-lg bg-blue-700 py-2 px-4 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              View all Your Product
+            </Link>
+          </div>
         </div>
       </Card>
     </div>
