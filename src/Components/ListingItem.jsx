@@ -1,18 +1,40 @@
-import React from "react";
-import { getAuth } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.config";
+import { toast } from "react-toastify";
 function ListingItem({ listing, id }) {
+  const navigate = useNavigate();
   const auth = getAuth();
   const handleAddToWish = async (listing) => {
-    const wishItem = {
-      ...listing,
-      wishRef: auth.currentUser.uid,
-      timestamp: serverTimestamp(),
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        addItem();
+      } else if (!user) {
+        navigate("/sign-in");
+        toast.info(
+          "Please log in",
+          { toastId: "r34-xAcu9#DBBD@(*" },
+          { autoClose: 10000 }
+        );
+        return;
+      }
+    });
+    const addItem = async () => {
+      const wishItem = {
+        ...listing,
+        wishRef: auth.currentUser.uid,
+        timestamp: serverTimestamp(),
+      };
+      console.log(wishItem);
+      try {
+        await addDoc(collection(db, "wishlists"), wishItem);
+      } catch (error) {
+        toast.error("An error occured");
+      }
     };
-    await addDoc(collection(db, "wishlists"), wishItem);
   };
+
   return (
     <div className="w-full">
       <div className="relative">
@@ -31,7 +53,12 @@ function ListingItem({ listing, id }) {
           </p>
         </Link>
         <div className="absolute bottom-1 right-2">
-          <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:bg-blue-200">
+          <button
+            className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4 hover:bg-blue-200"
+            onClick={() => {
+              handleAddToWish(listing);
+            }}
+          >
             <svg
               fill="currentColor"
               strokeLinecap="round"
@@ -39,9 +66,6 @@ function ListingItem({ listing, id }) {
               strokeWidth="2"
               className="w-5 h-5"
               viewBox="0 0 24 24"
-              onClick={() => {
-                handleAddToWish(listing);
-              }}
             >
               <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
             </svg>

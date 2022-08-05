@@ -143,7 +143,6 @@ function SellItem() {
     setLoading(false);
     toast.success("Listings added successfully");
     navigate(`/category/${formDataCopy.brand}/${docRef.id}`);
-    console.log(formDataCopy);
   };
   const onChange = (e) => {
     if (e.target.files) {
@@ -224,7 +223,7 @@ function SellItem() {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mt-4"
                   placeholder="Battery Health(%)"
-                  value={battery}
+                  value={bh}
                   onChange={onChange}
                 />
               )}

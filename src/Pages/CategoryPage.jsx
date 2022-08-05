@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   collection,
   getDocs,
@@ -7,17 +7,14 @@ import {
   where,
   orderBy,
   limit,
-  startAfter,
 } from "firebase/firestore";
 import ListingItem from "../Components/ListingItem";
 import { db } from "../firebase.config";
-import { toast } from "react-toastify";
 import Spinner from "../Components/Spinner";
 function CategoryPage() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
   const params = useParams();
-  const navigate = useNavigate();
   useEffect(() => {
     const fetchListings = async () => {
       const listingRef = collection(db, "listings");
@@ -35,11 +32,11 @@ function CategoryPage() {
           data: doc.data(),
         });
       });
-      console.log(listings);
       setListings(listings);
       setLoading(false);
     };
     fetchListings();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.CategoryType]);
 
   if (loading || listings.length === 0)

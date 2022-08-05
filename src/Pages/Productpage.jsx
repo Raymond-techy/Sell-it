@@ -17,7 +17,6 @@ function Productpage() {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists) {
         setListing(docSnap.data());
-        console.log(listing);
       } else {
         navigate("/");
       }
@@ -26,6 +25,7 @@ function Productpage() {
       }, 3000);
     };
     fetchProduct();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.productId]);
   if (loading || listing.length === 0)
     return <Spinner description="loading..." />;

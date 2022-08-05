@@ -13,7 +13,6 @@ function Navbar() {
       return true;
     }
   };
-  console.log(selected, "selected tab");
   const navs = [
     { Title: "Explore", path: "/" },
     { Title: "WishList", path: "/wish-list" },

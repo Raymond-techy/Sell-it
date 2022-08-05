@@ -12,6 +12,7 @@ import SellItem from "./Pages/SellItem";
 import CategoryPage from "./Pages/CategoryPage";
 import Wishlist from "./Pages/Wishlist";
 import Productpage from "./Pages/Productpage";
+import Myproduct from "./Pages/Myproduct";
 function App() {
   return (
     <Router>
@@ -24,6 +25,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/sell-item" element={<SellItem />} />
         <Route path="/wish-list" element={<Wishlist />} />
+        <Route path="/my-product" element={<Myproduct />} />
         <Route path="/category/:categoryType" element={<CategoryPage />} />
         <Route
           path="/category/:categoryType/:productId"
