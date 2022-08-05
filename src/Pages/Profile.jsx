@@ -58,7 +58,7 @@ function Profile() {
           mobileNumber: number,
         });
       } else if (name === userName && number === userNumber) {
-        toast.error("No Changes was made");
+        toast.error("No Changes was made", { toastId: "6yfvyuwevyufgvwefyuv" });
         return;
       }
       const userRef = doc(db, "users", auth.currentUser.uid);
@@ -66,9 +66,11 @@ function Profile() {
         fullName: name,
         mobileNumber: number,
       });
-      toast.success("Profile updated");
+      toast.success("Profile updated", { toastId: "6yfvyuwevyufgvwefyuv" });
     } catch (error) {
-      toast.error("Unable to update profile");
+      toast.error("Unable to update profile", {
+        toastId: "6yfvyuwevyufgvwefyuv",
+      });
     }
   };
   const onfocusElem = () => {
@@ -111,11 +113,6 @@ function Profile() {
       <Card className="py-16">
         <div className="flex flex-col items-center pt-8 h-screen">
           <div className="relative">
-            {/* <img
-              className="mb-3 h-24 w-24 rounded-full shadow-lg hover:opacity-50"
-              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-              alt="Bonnie"
-            /> */}
             <FaUserAlt
               className="mb-3 h-24 w-24 rounded-full shadow-lg hover:opacity-50"
               color="#8f8f8f"
