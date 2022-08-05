@@ -10,6 +10,7 @@ function ListingItem({ listing, id }) {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         addItem();
+        toast.success("Item added to wishList", { toastId: "r34-xAcu9#@(*" });
       } else if (!user) {
         toast.info("Please log in", { toastId: "r34-xAcu9#@(*" });
         // navigate("/sign-in");
@@ -44,9 +45,12 @@ function ListingItem({ listing, id }) {
           </div>
           <h3 className="mt-4 text-sm text-gray-700">{listing.name}</h3>
           <p className="mt-1 text-sm text-gray-500">{listing.brand}</p>
-          <p className="mt-1 text-lg font-medium text-gray-900">
-            ₦{listing.price.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          </p>
+          {listing.price !== "" && (
+            <p className="mt-1 text-lg font-medium text-gray-900">
+              ₦
+              {[listing.price].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            </p>
+          )}
         </Link>
         <div className="absolute bottom-1 right-2">
           <button

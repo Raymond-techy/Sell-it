@@ -1,8 +1,11 @@
 import React from "react";
-
+import { FaTrash } from "react-icons/fa";
 function WishItem({ WishItem, id }) {
   return (
     <tr key={id} className="border-t-2 border-gray-200">
+      <td className="w-10 text-center border-t-2 border-gray-200">
+        <FaTrash className="cursor-pointer" />
+      </td>
       <td className="px-4 py-3 border-b-2 border-gray-200">
         <img src={WishItem.imgUrls[0]} alt="productImage" className="w-8 h-8" />
       </td>
