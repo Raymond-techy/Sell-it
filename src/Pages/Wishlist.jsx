@@ -42,7 +42,6 @@ function Wishlist() {
         });
         setWishList(wishItems);
         setLoading(false);
-        console.log(wishLists, "wishLists");
       } catch (error) {
         toast.error("unable to get wish lists", { toastId: "YU$V%^^$TG" });
         navigate("/");

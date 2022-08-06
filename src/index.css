@@ -33,7 +33,7 @@ body {
 
 .loader span {
   position: absolute;
-  color: #33f82c;
+  color: rgba(0, 0, 254, 0.913);
   transform: translate(-50%, -50%);
   font-size: 35px;
   margin-left: 50%;
@@ -42,12 +42,12 @@ body {
 
 .loader span:nth-child(1) {
   color: transparent;
-  -webkit-text-stroke: 0.3px rgb(68, 255, 0);
+  -webkit-text-stroke: 0.3px rgba(0, 0, 254, 0.913);
 }
 
 .loader span:nth-child(2) {
-  color: rgb(68, 255, 0);
-  -webkit-text-stroke: 1px rgb(68, 255, 0);
+  color: rgba(55, 55, 244, 0.603);
+  -webkit-text-stroke: 1px rgba(0, 0, 254, 0.913);
   animation: uiverse723 3s ease-in-out infinite;
 }
 

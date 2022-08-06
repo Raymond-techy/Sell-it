@@ -10,7 +10,7 @@ function Category() {
           <div className="inline-block p-8 text-center">
             <Link to="/category/iphone">
               <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-full bg-indigo-50">
-                <FaApple className="w-10 h-10 text-slate-800" />
+                <FaApple className="w-10 h-10 text-current" />
               </div>
               <p className="font-bold tracking-wide text-gray-800">iPhone</p>
             </Link>
